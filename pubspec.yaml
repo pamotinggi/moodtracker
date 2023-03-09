@@ -1,0 +1,42 @@
+name: moodtracker
+description: Application to track your daily mood
+
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.4 <3.0.0'
+
+
+dependencies:
+  easy_splash_screen: ^1.0.4
+  firebase_core: ^2.7.1
+  firebase_auth: ^4.2.10
+  cloud_firestore: ^4.4.4
+  fluttertoast: ^8.2.1
+  flutter:
+    sdk: flutter
+
+
+
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^2.0.0
+
+
+flutter:
+
+
+  uses-material-design: true
+
+  assets:
+    - assets/
+
