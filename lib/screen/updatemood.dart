@@ -78,7 +78,7 @@ class _UpdateMoodState extends State<UpdateMood> {
               ),
             ),
             SizedBox(
-              height: 25,
+              height: 26,
             ),
             Material(
               elevation: 3,
