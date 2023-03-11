@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_emoji_feedback/flutter_emoji_feedback.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class UpdateMood extends StatefulWidget {
@@ -25,7 +26,7 @@ class _UpdateMoodState extends State<UpdateMood> {
         child: Column(
           children: [
             SizedBox(
-              height: 90,
+              height: 27,
             ),
             Text(
               "How's your day ?",
@@ -37,7 +38,7 @@ class _UpdateMoodState extends State<UpdateMood> {
             SizedBox(
               height: 15,
             ),
-            RatingBar.builder(
+            /*RatingBar.builder(
               initialRating: 3,
               minRating: 1,
               direction: Axis.horizontal,
@@ -50,6 +51,28 @@ class _UpdateMoodState extends State<UpdateMood> {
               ),
               onRatingUpdate: (rating) {
                 print(rating);
+              },
+            ),*/
+            EmojiFeedback(
+              curve: Curves.bounceIn,
+              inactiveElementBlendColor: Colors.grey,
+              inactiveElementScale: 0.5,
+              onChanged: (value) {
+                if (value == 1) {
+                  print("Terrible");
+                }
+                else if( value == 2){
+                  print("sad");
+                }
+                else if( value == 3){
+                  print("good");
+                }
+                else if( value == 4){
+                  print("very good");
+                }
+                else if( value == 5){
+                  print("awesome");
+                }
               },
             ),
             SizedBox(
