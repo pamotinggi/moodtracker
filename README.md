@@ -7,3 +7,5 @@ So I decided to make a side project during my internship. The main purpose of th
 9/March/2023 - Register and login page done. Connected the app to firebase. User can now successfully register and login to the application 
 
 10/March/2023 - Added working bottom navigation bar. Yes I done this during my internship off day. 
+
+11/March/2023 - Update some UI element.
