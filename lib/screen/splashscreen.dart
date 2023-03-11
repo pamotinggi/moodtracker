@@ -26,6 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return EasySplashScreen(
+      loaderColor: Colors.deepPurple,
       logo: Image.asset('assets/moodlogo.png'),
       title: Text(
         "Mood Tracker",

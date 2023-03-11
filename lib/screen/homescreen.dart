@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> screens = [
     FeedScreen(),
     ShareFeed(),
-    UpdateMood(),
+    //UpdateMood(),
     MyMood(),
   ];
   void _onItemTapped(int index) {
@@ -35,8 +35,8 @@ class _HomeScreenState extends State<HomeScreen> {
         onDestinationSelected: _onItemTapped,
         destinations: [
           NavigationDestination(icon: Icon(Icons.home), label: 'Feed'),
-          NavigationDestination(icon: Icon(Icons.lightbulb), label: 'Share'),
-          NavigationDestination(icon: Icon(Icons.update), label: 'Update Mood'),
+          NavigationDestination(icon: Icon(Icons.lightbulb), label: 'Thoughts'),
+         //NavigationDestination(icon: Icon(Icons.update), label: 'Update Mood'),
           NavigationDestination(icon: Icon(Icons.mood), label: 'My Mood'),
         ],
       ),

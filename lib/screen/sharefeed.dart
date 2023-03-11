@@ -12,7 +12,7 @@ class _ShareFeedState extends State<ShareFeed> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Share Feed"),
+        title: Text("My Thoughts"),
         centerTitle: true,
         automaticallyImplyLeading: false,
       ),

@@ -20,7 +20,6 @@ class _UpdateMoodState extends State<UpdateMood> {
       appBar: AppBar(
         title: Text("Update Mood"),
         centerTitle: true,
-        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(

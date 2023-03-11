@@ -16,6 +16,7 @@ dependencies:
   firebase_core: ^2.7.1
   flutter_rating_bar: ^4.0.1
   flutter_emoji_feedback: ^0.1.2
+  flutter_speed_dial: ^6.2.0
   firebase_auth: ^4.2.10
   cloud_firestore: ^4.4.4
   fluttertoast: ^8.2.1
