@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_emoji_feedback/flutter_emoji_feedback.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:moodtracker/model/mood__model.dart';
+import 'package:moodtracker/screen/mymood.dart';
 
 class UpdateMood extends StatefulWidget {
   const UpdateMood({Key? key}) : super(key: key);
@@ -10,10 +14,25 @@ class UpdateMood extends StatefulWidget {
 }
 
 class _UpdateMoodState extends State<UpdateMood> {
-  final TextEditingController moodController = TextEditingController();
-  final TextEditingController feelingController = TextEditingController();
+  String moodent = "";
   final TextEditingController causeController = TextEditingController();
-  final TextEditingController description = TextEditingController();
+
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  User? user = FirebaseAuth.instance.currentUser;
+  mood moodmodel = new mood();
+
+  void initState() {
+    super.initState();
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      this.moodmodel = mood.fromMap(value.data());
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,21 +56,6 @@ class _UpdateMoodState extends State<UpdateMood> {
             SizedBox(
               height: 15,
             ),
-            /*RatingBar.builder(
-              initialRating: 3,
-              minRating: 1,
-              direction: Axis.horizontal,
-              allowHalfRating: true,
-              itemCount: 5,
-              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-              itemBuilder: (context, _) => Icon(
-                Icons.star,
-                color: Colors.amber,
-              ),
-              onRatingUpdate: (rating) {
-                print(rating);
-              },
-            ),*/
             EmojiFeedback(
               curve: Curves.bounceIn,
               inactiveElementBlendColor: Colors.grey,
@@ -59,18 +63,19 @@ class _UpdateMoodState extends State<UpdateMood> {
               onChanged: (value) {
                 if (value == 1) {
                   print("Terrible");
-                }
-                else if( value == 2){
+                  moodent = "Terribe 😖";
+                } else if (value == 2) {
                   print("sad");
-                }
-                else if( value == 3){
+                  moodent = "Sad 😣";
+                } else if (value == 3) {
                   print("good");
-                }
-                else if( value == 4){
+                  moodent = "Good 🙂";
+                } else if (value == 4) {
                   print("very good");
-                }
-                else if( value == 5){
+                  moodent = "Very Good 😄";
+                } else if (value == 5) {
                   print("awesome");
+                  moodent = "Awesome 😍";
                 }
               },
             ),
@@ -108,7 +113,32 @@ class _UpdateMoodState extends State<UpdateMood> {
               borderRadius: BorderRadius.circular(40),
               child: MaterialButton(
                 padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                onPressed: () {},
+                onPressed: () {
+                  String id = DateTime.now().toString();
+                  DateTime dateToday = DateTime(DateTime.now().year,
+                      DateTime.now().month, DateTime.now().day);
+                  String date = dateToday.toString();
+
+                  Map<String, dynamic> data = {
+                    "id": id,
+                    "date": date,
+                    "feel": moodent,
+                    "happen": causeController.text,
+                  };
+                  FirebaseFirestore.instance
+                      .collection('mood_entry')
+                      .doc(user!.email)
+                      .collection('entry')
+                      .doc(id)
+                      .set(data);
+
+                  final snackBar =
+                      SnackBar(content: const Text("Mood Entry Submitted"));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => MyMood()));
+                },
                 child: Text(
                   "Save Mood",
                   style: TextStyle(
