@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_emoji_feedback/flutter_emoji_feedback.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:moodtracker/model/mood__model.dart';
+import 'package:moodtracker/screen/homescreen.dart';
 import 'package:moodtracker/screen/mymood.dart';
 
 class UpdateMood extends StatefulWidget {
@@ -137,7 +138,7 @@ class _UpdateMoodState extends State<UpdateMood> {
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => MyMood()));
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
                 },
                 child: Text(
                   "Save Mood",

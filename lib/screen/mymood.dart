@@ -44,7 +44,7 @@ class _MyMoodState extends State<MyMood> {
         automaticallyImplyLeading: false,
       ),
       body: Container(
-        padding: EdgeInsets.all(30),
+        padding: EdgeInsets.all(20),
         child: ListView.builder(
             scrollDirection: Axis.vertical,
             itemCount: _itemList.length,

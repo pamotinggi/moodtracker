@@ -28,7 +28,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[_selectedIndex],
+      body: Container(
+        child: screens[_selectedIndex],
+      ),
       bottomNavigationBar: NavigationBar(
         backgroundColor: Colors.pinkAccent.shade100,
         selectedIndex: _selectedIndex,
@@ -36,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
         destinations: [
           NavigationDestination(icon: Icon(Icons.home), label: 'Feed'),
           NavigationDestination(icon: Icon(Icons.lightbulb), label: 'Thoughts'),
-         //NavigationDestination(icon: Icon(Icons.update), label: 'Update Mood'),
+          //NavigationDestination(icon: Icon(Icons.update), label: 'Update Mood'),
           NavigationDestination(icon: Icon(Icons.mood), label: 'My Mood'),
         ],
       ),
