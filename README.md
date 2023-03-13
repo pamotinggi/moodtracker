@@ -11,3 +11,5 @@ So I decided to make a side project during my internship. The main purpose of th
 11/3/2023 - Update some UI element.
 
 12/3/2023 - The app can now allow user to add new entry into firebase.(Update mood)
+
+13/3/2023 - The app can now view all the user data entry in MYMOOD page
