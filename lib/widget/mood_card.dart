@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:moodtracker/model/mood__model.dart';
 import 'package:moodtracker/model/viewmood.dart';
+import 'package:moodtracker/screen/homescreen.dart';
+import 'package:moodtracker/screen/moodedit.dart';
 
 class MoodCard extends StatelessWidget {
   late viewmood card;
@@ -69,11 +71,31 @@ class MoodCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MoodEdit(card: card)));
+                },
                 icon: Icon(Icons.edit),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  final snackBar =
+                      SnackBar(content: const Text("Entry Deleted"));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                  final docUser = FirebaseFirestore.instance
+                      .collection('mood_entry')
+                      .doc(user!.email)
+                      .collection('entry')
+                      .doc(card.id);
+
+                  docUser.delete();
+
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
+                },
                 icon: Icon(Icons.delete),
               ),
             ],
