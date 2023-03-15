@@ -34,7 +34,7 @@ class _FeedUpdateState extends State<FeedUpdate> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("What's in ur mind ?"),
+        title: Text("Whats in ur mind ?"),
         centerTitle: true,
       ),
       body: Center(
