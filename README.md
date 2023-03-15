@@ -14,4 +14,6 @@ So I decided to make a side project during my internship. The main purpose of th
 
 13/3/2023 - The app can now view all the user data entry in MYMOOD page
 
-14/4/2023 - The mood entry can now be update and delete. With this, all of feature in my  mood page is completed(I guess). Next would be thoughts and feed
+14/3/2023 - The mood entry can now be update and delete. With this, all of feature in my  mood page is completed(I guess). Next would be thoughts and feed
+
+15/3/2023 - The feed entry can now be use and all the data enter will be saved in firebase 
