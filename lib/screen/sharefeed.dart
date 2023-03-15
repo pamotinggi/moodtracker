@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:moodtracker/screen/feedupdate.dart';
+import 'package:moodtracker/screen/homescreen.dart';
 
 class ShareFeed extends StatefulWidget {
   const ShareFeed({Key? key}) : super(key: key);
@@ -15,6 +18,19 @@ class _ShareFeedState extends State<ShareFeed> {
         title: Text("My Thoughts"),
         centerTitle: true,
         automaticallyImplyLeading: false,
+      ),
+      floatingActionButton: SpeedDial(
+        icon: Icons.menu,
+        children: [
+          SpeedDialChild(
+              child: const Icon(Icons.add),
+              label: 'New Entry',
+              backgroundColor: Colors.pinkAccent,
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => FeedUpdate()));
+              }),
+        ],
       ),
     );
   }

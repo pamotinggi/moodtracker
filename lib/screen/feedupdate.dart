@@ -1,24 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_emoji_feedback/flutter_emoji_feedback.dart';
-import 'package:moodtracker/model/mood__model.dart';
+import 'package:moodtracker/model/feed_model.dart';
 import 'package:moodtracker/screen/homescreen.dart';
 
-class UpdateMood extends StatefulWidget {
-  const UpdateMood({Key? key}) : super(key: key);
+class FeedUpdate extends StatefulWidget {
+  const FeedUpdate({Key? key}) : super(key: key);
 
   @override
-  State<UpdateMood> createState() => _UpdateMoodState();
+  State<FeedUpdate> createState() => _FeedUpdateState();
 }
 
-class _UpdateMoodState extends State<UpdateMood> {
-  String moodent = "";
-  final TextEditingController causeController = TextEditingController();
+class _FeedUpdateState extends State<FeedUpdate> {
+  TextEditingController feedController = TextEditingController();
 
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   User? user = FirebaseAuth.instance.currentUser;
-  mood moodmodel = new mood();
+  feed feedmodel = new feed();
 
   void initState() {
     super.initState();
@@ -27,7 +25,7 @@ class _UpdateMoodState extends State<UpdateMood> {
         .doc(user!.uid)
         .get()
         .then((value) {
-      this.moodmodel = mood.fromMap(value.data());
+      this.feedmodel = feed.fromMap(value.data());
       setState(() {});
     });
   }
@@ -36,7 +34,7 @@ class _UpdateMoodState extends State<UpdateMood> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Update Mood"),
+        title: Text("What's in ur mind ?"),
         centerTitle: true,
       ),
       body: Center(
@@ -46,43 +44,7 @@ class _UpdateMoodState extends State<UpdateMood> {
               height: 27,
             ),
             Text(
-              "How's your day ?",
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            EmojiFeedback(
-              curve: Curves.bounceIn,
-              inactiveElementBlendColor: Colors.grey,
-              inactiveElementScale: 0.5,
-              onChanged: (value) {
-                if (value == 1) {
-                  print("Terrible");
-                  moodent = "Terribe 😖";
-                } else if (value == 2) {
-                  print("sad");
-                  moodent = "Sad 😣";
-                } else if (value == 3) {
-                  print("good");
-                  moodent = "Good 🙂";
-                } else if (value == 4) {
-                  print("very good");
-                  moodent = "Very Good 😄";
-                } else if (value == 5) {
-                  print("awesome");
-                  moodent = "Awesome 😍";
-                }
-              },
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Text(
-              "What happened ?",
+              "What are you thinking right now ?",
               style: TextStyle(
                   fontSize: 20,
                   color: Colors.black,
@@ -94,7 +56,7 @@ class _UpdateMoodState extends State<UpdateMood> {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextField(
-                controller: causeController,
+                controller: feedController,
                 maxLines: 5,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -121,18 +83,17 @@ class _UpdateMoodState extends State<UpdateMood> {
                   Map<String, dynamic> data = {
                     "id": id,
                     "date": date,
-                    "feel": moodent,
-                    "happen": causeController.text,
+                    "content": feedController.text,
                   };
                   FirebaseFirestore.instance
-                      .collection('mood_entry')
+                      .collection('feed_entry')
                       .doc(user!.email)
                       .collection('entry')
                       .doc(id)
                       .set(data);
 
                   final snackBar =
-                      SnackBar(content: const Text("Mood Entry Submitted"));
+                  SnackBar(content: const Text("Feed Entry Submitted"));
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
                   Navigator.of(context).push(
