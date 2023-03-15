@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:moodtracker/screen/homescreen.dart';
 import 'package:moodtracker/screen/loginscreen.dart';
 
 class SplashScreen extends StatefulWidget {

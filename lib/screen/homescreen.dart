@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:moodtracker/screen/feedscreen.dart';
 import 'package:moodtracker/screen/mymood.dart';
 import 'package:moodtracker/screen/sharefeed.dart';
-import 'package:moodtracker/screen/updatemood.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
