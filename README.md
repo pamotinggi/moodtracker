@@ -17,3 +17,5 @@ So I decided to make a side project during my internship. The main purpose of th
 14/3/2023 - The mood entry can now be update and delete. With this, all of feature in my  mood page is completed(I guess). Next would be thoughts and feed
 
 15/3/2023 - The feed entry can now be use and all the data enter will be saved in firebase 
+
+16/3/2023 - The feed component is completed 
