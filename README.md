@@ -19,3 +19,5 @@ So I decided to make a side project during my internship. The main purpose of th
 15/3/2023 - The feed entry can now be use and all the data enter will be saved in firebase 
 
 16/3/2023 - The feed component is completed 
+
+17/3/23 - Public feed can now display data. Added report button for disruptive public feed
