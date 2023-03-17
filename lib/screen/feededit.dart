@@ -132,8 +132,6 @@ class _FeedEditState extends State<FeedEdit> {
 
                   FirebaseFirestore.instance
                       .collection('pub_feed')
-                      .doc(user!.email)
-                      .collection('entry')
                       .doc(id)
                       .set(data);
 
