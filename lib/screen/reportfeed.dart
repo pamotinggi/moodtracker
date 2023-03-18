@@ -67,6 +67,7 @@ class _ReportFeedState extends State<ReportFeed> {
                 controller: contentController,
                 maxLines: 5,
                 decoration: InputDecoration(
+                  hintText: content,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
