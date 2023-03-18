@@ -15,13 +15,29 @@ class ReportFeed extends StatefulWidget {
 
 class _ReportFeedState extends State<ReportFeed> {
   late String id;
-  late String happen;
-  String moodent = "";
-  final TextEditingController causeController = TextEditingController();
+  late String content;
+  late String date;
+  late TextEditingController contentController = TextEditingController();
 
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   User? user = FirebaseAuth.instance.currentUser;
   feed feedmodel = feed();
+
+  @override
+  void initState() {
+    id = widget.card.id!;
+    content = widget.card.content!;
+    date = widget.card.date!;
+    super.initState();
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      this.feedmodel = feed.fromMap(value.data());
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +64,9 @@ class _ReportFeedState extends State<ReportFeed> {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextField(
-                controller: causeController,
+                controller: contentController,
                 maxLines: 5,
                 decoration: InputDecoration(
-                  hintText: happen,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -68,18 +83,17 @@ class _ReportFeedState extends State<ReportFeed> {
               child: MaterialButton(
                 padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
                 onPressed: () {
-                  final docUser = FirebaseFirestore.instance
-                      .collection('mood_entry')
-                      .doc(user!.email)
-                      .collection('entry')
-                      .doc(id);
-
-                  docUser.update({
-                    'feel': moodent,
-                    'happen': causeController.text,
-                  });
+                  Map<String, dynamic> data = {
+                    "id": id,
+                    "date": date,
+                    "content": content,
+                  };
+                  FirebaseFirestore.instance
+                      .collection('reported_feed')
+                      .doc(user!.uid)
+                      .set(data);
                   final snackBar =
-                      SnackBar(content: const Text("Mood Entry Edited"));
+                      SnackBar(content: const Text("Report Edited Edited"));
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
                   Navigator.of(context).push(

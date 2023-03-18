@@ -58,7 +58,7 @@ class PubCard extends StatelessWidget {
                   Navigator.push(
                       context,
                     MaterialPageRoute(
-                          builder: (context) => ReportFeed()));
+                          builder: (context) => ReportFeed(card : card)));
                 },
                 icon: Icon(Icons.report),
               ),
