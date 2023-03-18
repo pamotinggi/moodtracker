@@ -23,3 +23,5 @@ So I decided to make a side project during my internship. The main purpose of th
 17/3/23 - Public feed can now display data. Added report button for disruptive public feed
 
 18/3/23 - disruptive feed can now be report , development completed I guess 
+
+19/3/23 - Change application icon 
