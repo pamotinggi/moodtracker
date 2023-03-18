@@ -52,7 +52,7 @@ class _ReportFeedState extends State<ReportFeed> {
               height: 15,
             ),
             Text(
-              "What happened ?",
+              "Report This Feed",
               style: TextStyle(
                   fontSize: 20,
                   color: Colors.black,
@@ -66,6 +66,7 @@ class _ReportFeedState extends State<ReportFeed> {
               child: TextField(
                 controller: contentController,
                 maxLines: 5,
+                enabled: false,
                 decoration: InputDecoration(
                   hintText: content,
                   border: OutlineInputBorder(
