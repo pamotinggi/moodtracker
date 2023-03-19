@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:moodtracker/model/user_model.dart';
 import 'package:moodtracker/model/viewfeed.dart';
+import 'package:moodtracker/screen/loginscreen.dart';
 import 'package:moodtracker/widget/feed_card.dart';
 import 'package:moodtracker/widget/pubfeed_card.dart';
 
@@ -41,6 +42,20 @@ class _FeedScreenState extends State<FeedScreen> {
         title: Text("Feed Screen"),
         centerTitle: true,
         automaticallyImplyLeading: false,
+        actions: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(right: 20),
+            child: IconButton(
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()));
+              },
+              icon: Icon(Icons.logout_outlined),
+            ),
+          ),
+        ],
       ),
       body: Container(
         padding: EdgeInsets.all(20),
